@@ -1,0 +1,23 @@
+{
+    "name": "osbornwireless/alias",
+    "description": "",
+    "authors": [
+        {
+            "name": "Osborn Wireless",
+            "email": "kreeck@osbornwireless.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Osbornwireless\\Alias": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
