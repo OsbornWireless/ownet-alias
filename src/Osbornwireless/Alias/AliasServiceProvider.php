@@ -1,6 +1,8 @@
 <?php namespace Osbornwireless\Alias;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader,
+    Illuminate\Support\ServiceProvider,
+    Illuminate\Support\Facades\App;
 
 class AliasServiceProvider extends ServiceProvider {
 
@@ -28,10 +30,16 @@ class AliasServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-        $this->app->bind('booger', function()
-        {
-            return new Alias();
-        });
+        $this->app->booting(function(){
+                $loader = AliasLoader::getInstance();
+                $loader->alias('Alias', 'Osbornwireless\Alias\Facades\Alias');
+            });
+
+        $this->app->singleton('Alias', function(){
+                return new Alias;
+            });
+
+        $this->app['alias'] = $this->app->share( function($app) { return App::make('Alias'); });
     }
 
 	/**
